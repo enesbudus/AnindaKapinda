@@ -1,0 +1,115 @@
+﻿@model List<Marka>
+@{
+    ViewBag.Title = "Marka";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <section class="panel">
+        <div class="panel-body">
+            <div class="adv-table editable-table " style="margin-top:50px">
+                <form>
+                    <input type="hidden" class="form-control" id="MarkaID">
+                    <input type="text" class="form-control" id="MarkaAdi" placeholder="Marka Adı Giriniz" />
+                    <input type="text" class="form-control" id="MarkaDetay" placeholder="Marka Detay Giriniz" />
+                    <button class="btn btn-success" id="MarkaEkle">Ekle</button>
+                    <button class="btn btn-primary" id="MarkaGuncelle">Güncelle</button>
+                    <button class="btn btn-danger" id="MarkaSil">Sil</button>
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Marka Id</th>
+                            <th>Marka Adı</th>
+                            <th>Marka Detay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="selectRow" data-markaID="@item.MarkaId">
+                                <td>@item.MarkaId</td>
+                                <td>@item.MarkaAdi</td>
+                                <td>@item.MarkaAciklama</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+@section scripts{
+   <script>
+       $(document).ready(function () {
+           $("#MarkaEkle").click(function () {
+               var markaName = $("#MarkaAdi").val();
+               var markaDetay = $("#MarkaDetay").val();
+               $.ajax({
+                   type: "POST",
+                   url: "/Admin/Marka",
+                   data: {
+                       name: markaName,
+                       detay: markaDetay
+                   },
+                   success: function () {
+                       if (data=="ok") {
+
+                       window.location.reload();
+                       }
+                   }
+
+               });
+           });
+       });
+       $(".selectRow").click(function () {
+           $("#MarkaAdi").val(this.children[1].textContent);
+           $("#MarkaDetay").val(this.children[2].textContent);
+           $("#MarkaID").val(this.children[0].textContent);//değer alma
+
+       });
+       $(document).ready(function () {
+           $("#MarkaGuncelle").click(function () {
+               var markaName = $("#MarkaAdi").val();
+               var markaDetay = $("#MarkaDetay").val();
+               var markaID = $("#MarkaID").val();
+               $.ajax({
+                   type: "POST",
+                   url: "/Admin/MarkaGuncelle",
+                   data: {
+                       name: markaName,
+                       detay: markaDetay,
+                       id: markaID
+                   },
+                   success: function (data) {
+                       if (data == "ok") {
+                           window.location.reload();
+
+                       }
+                   }
+
+               });
+           });
+       });
+       $("#MarkaSil").click(function () {
+           var markaID = $("#MarkaID").val();
+           $.ajax({
+               type: "POST",
+               url: "/Admin/MarkaSil",
+               data: {
+                   id: markaID
+               },
+               success: function (data) {
+                   if (data == "ok") {
+                       window.location.reload();
+                   }
+               }
+           });
+       });
+    </script>
+}

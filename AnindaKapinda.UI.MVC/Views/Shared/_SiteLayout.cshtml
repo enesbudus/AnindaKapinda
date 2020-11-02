@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Anında Kapında</title>
+    <meta name="description" content="Here goes description" />
+    <meta name="author" content="author name" />
+    <link rel="/Assert/Site/shortcut icon" href="~/Assert/Site/favicon.ico" type="image/x-icon" />
+    <!-- ======================================================================
+                                Mobile Specific Meta
+    ======================================================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- ======================================================================
+                                Style CSS + Google Fonts
+    =======================================================================
+    <link href="/Assert/Site/http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,700italic,400,600,700,800" rel="stylesheet" type="text/css"> -->
+   @Styles.Render("~/BundlesSite/css")
+</head>
+
+<body class="home-blog-show">
+    <!-- ======================================================================
+                                    START SCRIPTS
+    ======================================================================= -->
+        @{ 
+            Html.RenderAction("Menu", "Home");
+        }
+
+    <div class="content">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="mini-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        2020 &copy; Anında Kapında MVC Projesi..
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-right">
+                            <img src="/Assert/Site/images/elements/payment.png" alt="payment systems" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/BundlesSite/scripts")
+    @RenderSection("scripts", false)
+    <!--[if lt IE 9]>
+      <script src="/Assert/Site/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="/Assert/Site/https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- ======================================================================
+                                    END SCRIPTS
+    ======================================================================= -->
+</body>
+
+</html>

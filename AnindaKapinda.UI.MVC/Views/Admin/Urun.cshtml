@@ -1,0 +1,53 @@
+﻿@model List<Urun>
+@{
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<section class="panel">
+    <div class="panel-body">
+        <div class="adv-table editable-table " style="margin-top:50px">
+            @Html.ActionLink("Yeni Ürün Ekle", "UrunEkle", null, new { @class = "btn btn-success" })
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ürün ID</th>
+                        <th>Ürün Adı</th>
+                        <th>Marka</th>
+                        <th>Kategori</th>
+                        <th>Ürün Fiyatı</th>
+                        <th>Ürün Detay</th>
+                        <th>Ürün Stok</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UrunId</td>
+                            <td>@item.UrunAdi</td>
+                            <td>@item.Marka.MarkaAdi</td>
+                            <td>@item.Kategori.KategoriAdi</td>
+                            <td>@item.UrunFiyat</td>
+                            <td>@item.UrunDetay</td>
+                            <td>@item.Stok</td>
+                            <td> @Html.ActionLink("Ürün Güncelle", "UrunGuncelle", new { id = item.UrunId }, new { @class = "btn btn-success" })</td>
+                            <td> @Html.ActionLink("Ürün Sİl", "UrunSil", new { id = item.UrunId, ad = item.UrunAdi }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+

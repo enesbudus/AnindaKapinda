@@ -1,0 +1,49 @@
+﻿<!--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="APICall.aspx.cs" Inherits="WebApplication1.APICall" %>-->
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Save").click(function () {
+                var urun = new Object();
+                urun.UrunAdi = $('#UrunAdi').val();
+                urun.UrunFiyat = $('#UrunFiyat').val();
+                urun.UrunDetay = $('#UrunDetay').val();
+                urun.EklenmeTarihi = $('#EklenmeTarihi').val();
+                urun.Stok = $('#Stok').val();
+
+                $.ajax({
+                    url: 'http://localhost:49970/api/Uruns',
+                    type: 'POST',
+                    contentType: 'Application/json;charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(urun),
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function () {
+                        console.log('Error in Operation');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <form id="form1">
+        UrunAdi :- <input type="text" name="UrunAdi" id="UrunAdi" />
+        UrunFiyat:- <input type="text" name="UrunFiyat" id="UrunFiyat" />
+        UrunDetay :- <input type="text" name="UrunDetay" id="UrunDetay" />
+        EklenmeTarihi:- <input type="date" name="EklenmeTarihi" id="EklenmeTarihi" />
+        Stok:- <input type="number" name="Stok" id="Stok" />
+        <input type="button" id="Save" value="Save Data" />
+    </form>
+
+</body>
+</html>

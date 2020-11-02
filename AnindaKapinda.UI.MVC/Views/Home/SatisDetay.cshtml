@@ -1,0 +1,51 @@
+﻿@model List<SatisDetay>
+
+@{
+    ViewBag.Title = "SatisDetay";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>SatisIslem</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Satış ID</th>
+        <th>Ürün ID</th>
+        <th>Ürün Detay</th>
+        <th>Ürün Adet</th>
+        <th>Ürün İndirim</th>
+        <th>Ürün Fiyat</th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.SatisId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Urun.UrunAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Urun.UrunDetay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAdet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunIndirim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunFiyat)
+        </td>
+     
+    </tr>
+    }
+
+</table>
+

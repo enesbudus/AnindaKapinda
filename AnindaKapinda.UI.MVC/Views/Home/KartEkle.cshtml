@@ -1,0 +1,63 @@
+﻿@model Kart
+@{
+    Layout = null;
+}
+<style>
+    body {
+        background-color: #eee;
+    }
+
+    *[role="form"] {
+        max-width: 530px;
+        padding: 15px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 0.3em;
+    }
+
+        *[role="form"] h2 {
+            margin-left: 5em;
+            margin-bottom: 1em;
+        }
+</style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+    <h2>Hesap Bilgileri</h2>
+    @using (Html.BeginForm("KartEkle", "Home", FormMethod.Post))
+    {
+        
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">Kart No</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.KartNo, new { @class = "form-control", required = "required", autofocus = "autofocus" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Son Kullanma Tarihi</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.SonKullanimTarihi, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">CVC No</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.CVCNo, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+      
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block">Ekle</button>
+            </div>
+
+            <div class="m-t-25 m-b--5 align-center">
+                @Html.ActionLink("Geri Dön", "Index")
+            </div>
+        </div>
+    }
+    <!-- /form -->
+</div> <!-- ./container -->

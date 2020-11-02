@@ -1,0 +1,85 @@
+﻿@model UserViewModel
+@{
+    Layout = null;
+}
+<style>
+    body {
+    background-color: #eee;
+}
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+}
+*[role="form"] h2 {
+    margin-left: 5em;
+    margin-bottom: 1em;
+}
+</style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+    
+        <h2>Kayıt Formu</h2>
+@using (Html.BeginForm("Register","Account", FormMethod.Post, new { id = "sign_up" }))
+{
+        <div class="form-group">
+            <label for="adi" class="col-sm-3 control-label">Adı</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Ad", required = "required", autofocus = "autofocus" })
+                <span class="help-block">Ad, eg.: Harry</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="soyadi" class="col-sm-3 control-label">Soyadı</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Surname, new { @class = "form-control", placeholder = "Soyad", required = "required" })
+                <span class="help-block">Soyad, eg.: Potter</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Mail, new { @class = "form-control", placeholder = "Email", required = "required", type = "email" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Sifre</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Password, new { @class = "form-control", placeholder = "Şifre", required = "required", type = "password" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telefon" class="col-sm-3 control-label">Telefon</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Telefon, new { @class = "form-control", placeholder = "Telefon", required = "required", type = "tel" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="adres" class="col-sm-3 control-label">Adres</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.Adres, new { @class = "form-control", placeholder = "Adres", required = "required", type = "text" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(a => a.BirthDate, new { @class = "form-control", placeholder = "Doğum Tarihi", required = "required" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block">Kaydol</button>
+            </div>
+            <div class="m-t-25 m-b--5 align-center">
+                @Html.ActionLink("Zaten hesabınız var mı?", "Login")
+            </div>
+        </div>
+}
+  <!-- /form -->
+</div> <!-- ./container -->
