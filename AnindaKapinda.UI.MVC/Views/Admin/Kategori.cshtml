@@ -1,0 +1,120 @@
+﻿@model List<Kategori>
+@{
+    ViewBag.Title = "Kategori";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<section class="panel">
+    <div class="panel-body">
+        <div class="adv-table editable-table " style="margin-top:50px">
+            <form>
+                <input type="hidden" class="form-control" id="KategoriId">
+                <input type="text" class="form-control" id="KategoriAdi" placeholder="Kategori Adı Giriniz" />
+                <input type="text" class="form-control" id="KategoriDetay" placeholder="Kategori Detay Giriniz" />
+                <button class="btn btn-success" id="KategoriEkle">Ekle</button>
+                <button class="btn btn-primary" id="KategoriGuncelle">Güncelle</button>
+                <button class="btn btn-danger" id="KategoriSil">Sil</button>
+            </form>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Kategori Id</th>
+                        <th>Kategori Adı</th>
+                        <th>Kategori Detay</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="selectRow" data-kategoriId="@item.KategoriId">
+                            <td>@item.KategoriId</td>
+                            <td>@item.KategoriAdi</td>
+                            <td>@item.KategoriDetay</td>
+                        </tr>
+
+
+
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#KategoriEkle").click(function () {
+                var kategoriName = $("#KategoriAdi").val();
+                var kategoriDetay = $("#KategoriDetay").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Kategori",
+                    data: {
+                        name: kategoriName,
+                        detay: kategoriDetay
+                    },
+                    success: function (data) {
+                        if (data == "ok") {
+                            //window.location.reload();
+                            $("#selectRow").append('<td>my data</td> <td>' + kategoriName + '</td> <td>' + kategoriDetay + '</td> ');
+                        }
+                    }
+
+                });
+            });
+        });
+    </script>
+    <script>
+        $(".selectRow").click(function () {
+            $("#KategoriAdi").val(this.children[1].textContent);
+            $("#KategoriDetay").val(this.children[2].textContent);
+            $("#KategoriId").val(this.children[0].textContent);//değer alma
+
+        });
+
+        $(document).ready(function () {
+            $("#KategoriGuncelle").click(function () {
+                var kategoriName = $("#KategoriAdi").val();
+                var kategoriDetay = $("#KategoriDetay").val();
+                var kategoriId = $("#KategoriId").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/KategoriGuncelle",
+                    data: {
+                        name: kategoriName,
+                        detay: kategoriDetay,
+                        id: kategoriId
+                    },
+                    success: function (data) {
+                        if (data == "ok") {
+                            window.location.reload();
+
+                        }
+                    }
+
+                });
+            });
+        });
+        $("#KategoriSil").click(function () {
+            var kategoriId = $("#KategoriId").val();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/KategoriSil",
+                data: {
+                    id: kategoriId
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+    </script>
+
+}
+
+

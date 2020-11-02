@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index","Home", FormMethod.Post))
+{
+
+    <div class="form-group">
+        Marka Seçiniz :  @Html.DropDownList("marka", (List<SelectListItem>)ViewBag.Markalar,"Bir Marka Seçiniz",new { @class = "form-control" })
+    </div>
+        <br />
+
+        <div class="form-group">
+            Kategori Seçiniz :  @Html.DropDownList("kategori", (List<SelectListItem>)ViewBag.Kategoriler, "Bir Kategori Seçiniz", new { @class = "form-control" })
+        </div>
+            <br />
+            <div class="form-group">
+                <button class="btn btn-warning">Filtrele</button>
+ </div>
+}
+
+@model List<Urun>
+<div class="box">
+    <div class="container">
+        <div class="tesla-carousel" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item=">div" data-tesla-autoplay="false" data-tesla-rotate="false">
+            <div class="site-title">
+                <ul class="wrapper-arrows">
+                    <li><i class="icon-517 prev" title="left arrow"></i></li>
+                    <li><i class="icon-501 next" title="right arrow"></i></li>
+                </ul>
+                <div class="site-inside"><span>Ürünler</span></div>
+            </div>
+            <div class="row">
+                <div class="tesla-carousel-items">
+                    @foreach (Urun item in Model)
+            {
+                        <div class="col-md-3 col-xs-6">
+                            <div class="product">
+                                <div class="product-cover">
+                                    <div class="product-cover-hover"><span><a href="/Home/UrunDetay/@item.UrunId">Göster</a></span></div>
+                                    <img src="~/Assert/Admin/img/gallery/1.jpg" />      
+                                </div>
+                                <div class="product-details">
+                                    <h1><a href="product.html">@item.UrunAdi</a></h1>
+                                    <p>@item.UrunDetay</p>
+                                    <div class="product-price">
+                                       <a href="javascript:void(0)" class="icon-257 SepetEkle" data-urunId="@item.UrunId" title="Sepete Ekle"></a> 
+                                        Fiyat : @System.Math.Round(item.UrunFiyat) TL
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script>
+    $(".SepetEkle").click(function () {
+        var urunId = $(this).attr("data-urunId");
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/Sepet?urunId=" + urunId,
+            success: function (data) {
+                if (data == "Ürün bulunamadı") {
+                    alert("Yanlış ürün eklediniz");
+                }
+                else {
+                    alert("Sepetteki ürün sayısı : " + data);
+                }
+            }
+        });
+    });
+</script>    
+}

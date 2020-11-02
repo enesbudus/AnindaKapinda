@@ -1,0 +1,84 @@
+﻿@model List<SepetViewModel>
+@{
+    ViewBag.Title = "SepetList";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div id="content" class="row center-block">
+    @if (Model.Count == 0)
+    {
+        <span class="alert alert-warning">Sepetinizde ürün bulunmamaktadır</span>
+    }
+    else
+    {
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Fiyat</th>
+                    <th>Adet</th>
+                    <th>Toplam Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (SepetViewModel item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.Quantity * item.Price)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                Sepet Tutarı : @Model.Sum(a => a.Quantity * a.Price) ₺
+            </tfoot>
+        </table>
+        <div class="form-group">
+            Kart Seçiniz :  @Html.DropDownList("kartlar", (List<SelectListItem>)ViewBag.Kartlar, "Bir Kart Seçiniz", new { @class = "form-control ",id="kart" })
+        </div>
+        <div>
+            <button class="btn btn-info SatinAlma">Alışveriş Tamamla</button>
+            <button class="btn btn-warning SepetTemizle float-right">Sepeti Temzile</button>
+        </div>
+
+
+
+
+
+
+    }
+</div>
+
+@section scripts{
+    <script>
+        $(".SatinAlma").click(function () {
+            var select = $("#kart").val();
+            $.ajax({
+                type: "GET",
+                url: "/Home/SatisIslem",
+                data: { kartID:select },
+                success: function (data) {
+                    if (data == "kart bulunamadı") {
+                        alert("Ödeme işlemi için kart bulunamadı")
+                    } else {
+                        window.location.href = "SatisDetay/" + data;
+                    }
+                  
+                }
+            });
+
+        });
+        $(".SepetTemizle").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Home/SepetTemizle",
+                success: function (data) {
+                    if (data == "ok") {
+                        window.location.href="SepetList"
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8612CB06-2F42-40B9-9E8F-CC6AA4B59492}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnindaKapinda.BusinessLogic</RootNamespace>
+    <AssemblyName>AnindaKapinda.BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IBaseService.cs" />
+    <Compile Include="Abstract\IKargoService.cs" />
+    <Compile Include="Abstract\IKartService.cs" />
+    <Compile Include="Abstract\IKategoriService.cs" />
+    <Compile Include="Abstract\IKullaniciRolService.cs" />
+    <Compile Include="Abstract\IKullaniciService.cs" />
+    <Compile Include="Abstract\IMarkaService.cs" />
+    <Compile Include="Abstract\ISatisDetayService.cs" />
+    <Compile Include="Abstract\ISatisService.cs" />
+    <Compile Include="Abstract\ISiparisDurumService.cs" />
+    <Compile Include="Abstract\IUrunService.cs" />
+    <Compile Include="Concrete\KargoService.cs" />
+    <Compile Include="Concrete\KartService.cs" />
+    <Compile Include="Concrete\KategoriService.cs" />
+    <Compile Include="Concrete\KullaniciRolService.cs" />
+    <Compile Include="Concrete\KullaniciService.cs" />
+    <Compile Include="Concrete\MarkaService.cs" />
+    <Compile Include="Concrete\SatisDetayService.cs" />
+    <Compile Include="Concrete\SatisService.cs" />
+    <Compile Include="Concrete\SiparisDurumService.cs" />
+    <Compile Include="Concrete\UrunService.cs" />
+    <Compile Include="Helpers\IKullaniciHelper.cs" />
+    <Compile Include="NinjectModuleDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnindaKapinda.Core\AnindaKapinda.Core.csproj">
+      <Project>{f7b49d29-c11b-4cfb-bf1d-c514ca4523a2}</Project>
+      <Name>AnindaKapinda.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnindaKapinda.DataAccess\AnindaKapinda.DataAccess.csproj">
+      <Project>{33cb1457-ee10-43b5-9c02-4d870a5ef078}</Project>
+      <Name>AnindaKapinda.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnindaKapinda.Model\AnindaKapinda.Model.csproj">
+      <Project>{376274e6-dd69-4dbc-acd3-2d5bf6d43050}</Project>
+      <Name>AnindaKapinda.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

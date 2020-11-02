@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index3";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <script src="~/Assert/Site/js/jquery-1.10.0.min.js"></script>
+</head>
+<h2>Index3</h2>
+<h2>ekjcke
+    vfevfvef
+    fvevef
+    evffve
+    fevevf
+    evffv
+    evfve
+    </h2>
+<div>
+    <input type="button" id="btnJsonResult" value="Veri Getir"/>
+</div>
+
+<script>
+    $(function () {
+        $("#btnJsonResult").click(
+            function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/JSON/Index4",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        alert(data.ProductID);
+                        alert(data.Name);
+                        alert(data.Price);
+                        alert(data.Quantity);
+                    }
+
+                });
+            }
+        )
+    })
+</script>
