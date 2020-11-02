@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnindaKapinda.UI.MVC", "Ani
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnindaKapinda.Common", "AnindaKapinda.Common\AnindaKapinda.Common.csproj", "{E6DEE16D-25EA-4FAF-8F16-F2D618DA65E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E2D33BF0-CA9A-4BAD-ACB0-C15DC5A65E7A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{E6DEE16D-25EA-4FAF-8F16-F2D618DA65E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6DEE16D-25EA-4FAF-8F16-F2D618DA65E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6DEE16D-25EA-4FAF-8F16-F2D618DA65E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2D33BF0-CA9A-4BAD-ACB0-C15DC5A65E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2D33BF0-CA9A-4BAD-ACB0-C15DC5A65E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2D33BF0-CA9A-4BAD-ACB0-C15DC5A65E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2D33BF0-CA9A-4BAD-ACB0-C15DC5A65E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
